@@ -20,3 +20,14 @@ Flutter Web & Android application demonstrating form UI, validation, conditional
 flutter pub get
 flutter run -d chrome
 flutter run -d android
+
+## Screenshots
+
+### Assignment Form
+![Assignment Form](screenshots/form_page.png)
+
+### Summary Dialog
+![Summary Dialog](screenshots/summary_dialog.png)
+
+### Success Response
+![Success](screenshots/success_snackbar.png)
