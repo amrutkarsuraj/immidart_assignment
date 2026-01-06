@@ -77,7 +77,7 @@ class AssignmentFormPage extends ConsumerWidget {
                             )
                                 .toList(),
                             onChanged: (value) {
-                              showVisa =
+                              ref.read(showVisaProvider.notifier).state =
                                   value?.isInternational ?? false;
                             },
                             validator: FormBuilderValidators.compose([

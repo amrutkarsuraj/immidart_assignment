@@ -1,22 +1,25 @@
-import 'package:immidart_assignment/core/network/dio_client.dart' show DioClient;
-import 'package:immidart_assignment/features/assignment/data/model/assignment_model.dart';
-import 'package:immidart_assignment/features/assignment/data/model/country_model.dart';
+import '../../../../core/network/dio_client.dart';
+import '../model/country_model.dart';
+import '../model/assignment_model.dart';
 
 class AssignmentRemoteDS {
-  Future<List<CountryModel>> getCountries() async {
-    await Future.delayed(const Duration(seconds: 1));
+  final DioClient dioClient;
 
-    return [
-      CountryModel(name: 'India', isInternational: false),
-      CountryModel(name: 'USA', isInternational: true),
-      CountryModel(name: 'Germany', isInternational: true),
-      CountryModel(name: 'Australia', isInternational: true),
-    ];
+  AssignmentRemoteDS(this.dioClient);
+
+  Future<List<CountryModel>> getCountries() async {
+    final response = await dioClient.dio.get('/countries');
+
+    return (response.data as List)
+        .map((e) => CountryModel.fromJson(e))
+        .toList();
   }
 
   Future<void> createAssignment(AssignmentModel model) async {
-    await Future.delayed(const Duration(seconds: 1));
-    return;
+    await dioClient.dio.post(
+      '/assignment',
+      data: model.toJson(),
+    );
   }
 }
 

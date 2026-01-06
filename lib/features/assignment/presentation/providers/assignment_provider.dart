@@ -7,11 +7,14 @@ import 'package:immidart_assignment/features/assignment/domain/usecases/get_coun
 
 final dioProvider = Provider((ref) => DioClient());
 
-final repositoryProvider = Provider(
+final repositoryProvider = Provider<AssignmentRepository>(
       (ref) => AssignmentRepositoryImpl(
-    AssignmentRemoteDS(),
+    AssignmentRemoteDS(
+      ref.read(dioProvider),
+    ),
   ),
 );
+
 final showVisaProvider = StateProvider<bool>((ref) => false);
 
 
